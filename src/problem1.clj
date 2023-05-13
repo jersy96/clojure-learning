@@ -10,7 +10,6 @@
                        has-ret-fuente-1 (some #(and (= (:retention/rate %) 1) (= (:retention/category %) :ret_fuente)) retentions)]
                    (or (and has-iva-19 (not has-ret-fuente-1)) (and (not has-iva-19) has-ret-fuente-1)))))))
 (defn -main
-  "Punto de entrada del programa"
   []
   (println (filter-invoice-items invoice))
   )
