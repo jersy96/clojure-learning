@@ -2,7 +2,8 @@
   (:require
     [clojure.spec.alpha :as s]
     [clojure.data.json :as json]
-    [clojure.instant :as instant]))
+    [clj-time.core :as t]
+    [clj-time.format :as f]))
 (use 'clojure.test)
 
 (s/def :customer/name string?)
@@ -52,8 +53,7 @@
   )
 
 (defn str-to-inst [s]
-  (let [splitted (clojure.string/split s #"/")]
-    (instant/read-instant-date (str (nth splitted 2) "-" (nth splitted 1) "-" (nth splitted 0)))))
+  (f/parse (f/formatter "dd/MM/yyyy") s))
 
 (defn fix-value [key value]
   (cond
